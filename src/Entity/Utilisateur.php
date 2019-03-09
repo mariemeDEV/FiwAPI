@@ -230,6 +230,17 @@ class Utilisateur
         return $this;
     }
 
+//function to generate a password
+    public function generatePassword($length):string{
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@';
+        $charactersLength = strlen($characters);
+        $password = '';
+        for ($i = 0; $i < $length; $i++) {
+            $password .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $password;
+    }
+
     /**
      * Get the value of motdepasse
      *
@@ -249,6 +260,7 @@ class Utilisateur
      */ 
     public function setMotdepasse(string $motdepasse)
     {
+        $motdepasse = $this->generatePassword(5);
         $this->motdepasse = $motdepasse;
 
         return $this;

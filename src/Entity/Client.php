@@ -31,8 +31,6 @@ class Client
      */
     private $login;
 
-
-
     /**
      * Get the value of idClient
      *

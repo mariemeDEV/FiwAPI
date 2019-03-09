@@ -45,7 +45,7 @@ class Compte
      */
     private $loginUser;
 
-       /**
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Transaction", mappedBy="compte")
      */
     private $transactions;

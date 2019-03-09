@@ -11,35 +11,26 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 
-use App\Entity\Utilisateur;
+use App\Entity\Chauffeur;
 
-class UtilisateurController extends FOSRestController
+class ChauffeurController extends FOSRestController
 {
-    //Getting the list of all users
+     //Getting the list of all chauffeurs
     /**
-    * @Rest\Get("/users")
+    * @Rest\Get("/chauffeurs")
     * 
     */
-    public function listUsers() : Response{ 
-        $usersRepository = $this->getDoctrine()->getRepository(Utilisateur::class);
-        $utilisateurs    = $usersRepository->findAll();
+    public function listChauffeurs() : Response{ 
+        $chauffeursRepository = $this->getDoctrine()->getRepository(Chauffeur::class);
+        $chauffeurs           = $chauffeursRepository->findAll();
 
-        if(empty($utilisateurs)){
+        if(empty($chauffeurs)){
             $response=array('message'=>'erreur','result'=>null);
             return new JsonResponse($response , Response::HTTP_NOT_FOUND);
         }else{
-            $usersData = $this->get('jms_serializer')->serialize($utilisateurs,'json');
-            $response=array('message'=>'succes','result'=>json_decode($usersData));
+            $chauffeursData = $this->get('jms_serializer')->serialize($chauffeurs,'json');
+            $response=array('message'=>'succes','result'=>json_decode($chauffeursData));
             return new JsonResponse($response, 200);
         }
-       
     }
-
-  
-    
-
-       
-    
-   
-
 }

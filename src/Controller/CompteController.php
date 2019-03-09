@@ -11,35 +11,26 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 
-use App\Entity\Utilisateur;
+use App\Entity\Compte;
 
-class UtilisateurController extends FOSRestController
+class CompteController extends FOSRestController
 {
-    //Getting the list of all users
-    /**
-    * @Rest\Get("/users")
-    * 
-    */
-    public function listUsers() : Response{ 
-        $usersRepository = $this->getDoctrine()->getRepository(Utilisateur::class);
-        $utilisateurs    = $usersRepository->findAll();
+//Getting the list of all comptes
+/**
+* @Rest\Get("/comptes")
+* 
+*/
+    public function listComptes() : Response{ 
+        $comptesRepository = $this->getDoctrine()->getRepository(Compte::class);
+        $comptes           = $comptesRepository->findAll();
 
-        if(empty($utilisateurs)){
+        if(empty($comptes)){
             $response=array('message'=>'erreur','result'=>null);
             return new JsonResponse($response , Response::HTTP_NOT_FOUND);
         }else{
-            $usersData = $this->get('jms_serializer')->serialize($utilisateurs,'json');
-            $response=array('message'=>'succes','result'=>json_decode($usersData));
+            $comptesData = $this->get('jms_serializer')->serialize($comptes,'json');
+            $response=array('message'=>'succes','result'=>json_decode($comptesData));
             return new JsonResponse($response, 200);
         }
-       
     }
-
-  
-    
-
-       
-    
-   
-
 }

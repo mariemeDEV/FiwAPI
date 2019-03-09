@@ -11,35 +11,26 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 
-use App\Entity\Utilisateur;
+use App\Entity\Client;
 
-class UtilisateurController extends FOSRestController
+class ClientController extends FOSRestController
 {
-    //Getting the list of all users
+   //Getting the list of all clients
     /**
-    * @Rest\Get("/users")
+    * @Rest\Get("/clients")
     * 
     */
-    public function listUsers() : Response{ 
-        $usersRepository = $this->getDoctrine()->getRepository(Utilisateur::class);
-        $utilisateurs    = $usersRepository->findAll();
+    public function listClients() : Response{ 
+        $clientsRepository = $this->getDoctrine()->getRepository(Client::class);
+        $clients           = $clientsRepository->findAll();
 
-        if(empty($utilisateurs)){
+        if(empty($clients)){
             $response=array('message'=>'erreur','result'=>null);
             return new JsonResponse($response , Response::HTTP_NOT_FOUND);
         }else{
-            $usersData = $this->get('jms_serializer')->serialize($utilisateurs,'json');
-            $response=array('message'=>'succes','result'=>json_decode($usersData));
+            $clientsData = $this->get('jms_serializer')->serialize($clients,'json');
+            $response=array('message'=>'succes','result'=>json_decode($clientsData));
             return new JsonResponse($response, 200);
         }
-       
-    }
-
-  
-    
-
-       
-    
-   
-
+}
 }

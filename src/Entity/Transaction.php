@@ -60,6 +60,7 @@ class Transaction
      */
     private $compte;
 
+    
     public function setCompte(?Compte $compte): self
     {
         $this->compte = $compte;
