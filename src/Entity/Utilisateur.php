@@ -15,9 +15,8 @@ class Utilisateur
     /**
      * @var string
      *
-     * @ORM\Column(name="login", type="string", length=10, nullable=false)
+     * @ORM\Column(name="login", type="string", length=20, nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $login;
 
@@ -70,7 +69,17 @@ class Utilisateur
      */
     private $motdepasse;
 
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="profil", type="string", length=15, nullable=false)
+     */
+    private $profil;
+
     
+    // public function __construct($login){
+    //     $this->login=$login;
+    // }
 
      /**
      * Set the value of login
@@ -230,17 +239,6 @@ class Utilisateur
         return $this;
     }
 
-//function to generate a password
-    public function generatePassword($length):string{
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@';
-        $charactersLength = strlen($characters);
-        $password = '';
-        for ($i = 0; $i < $length; $i++) {
-            $password .= $characters[rand(0, $charactersLength - 1)];
-        }
-        return $password;
-    }
-
     /**
      * Get the value of motdepasse
      *
@@ -260,11 +258,41 @@ class Utilisateur
      */ 
     public function setMotdepasse(string $motdepasse)
     {
-        $motdepasse = $this->generatePassword(5);
         $this->motdepasse = $motdepasse;
+        return $this;
+    }
+
+    /**
+     * Get the value of profil
+     *
+     * @return  string
+     */ 
+    public function getProfil()
+    {
+        return $this->profil;
+    }
+
+    /**
+     * Set the value of profil
+     *
+     * @param  string  $profil
+     *
+     * @return  self
+     */ 
+    public function setProfil(string $profil)
+    {
+        $this->profil = $profil;
 
         return $this;
     }
 
-   
+    /**
+     * Get the value of login
+     *
+     * @return  string
+     */ 
+    public function getLogin()
+    {
+        return $this->login;
+    }
 }
