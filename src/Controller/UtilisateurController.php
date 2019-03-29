@@ -12,13 +12,13 @@ use App\Entity\Compte;
 
 
 
-class UtilisateurController extends FOSRestController
-{
-    //Données de tous les utilisateurs
-    /**
-    * @Rest\Get("/users")
-    * 
-    */
+class UtilisateurController extends FOSRestController{
+
+//Fonction pour récuprer les données de tous les utilisateurs.
+/**
+* @Rest\Get("/users")
+* 
+*/
     public function listUsers() : Response{ 
         $usersRepository = $this->getDoctrine()->getRepository(Utilisateur::class);
         $utilisateurs    = $usersRepository->findAll();
@@ -32,10 +32,11 @@ class UtilisateurController extends FOSRestController
         }
     }
 
-      /**
-    * @Rest\Get("/profils/{profil}")
-    * 
-    */
+//Fonction pour recupération des données de l'utilisateur en fonction de son profil
+/**
+* @Rest\Get("/profils/{profil}")
+* 
+*/
     public function getUsersByProfil($profil) :Response{
         $usersRepository = $this->getDoctrine()->getRepository(Utilisateur::class);
         $usersWithProfil = $usersRepository->findBy(['profil'=>$profil]);
@@ -50,11 +51,11 @@ class UtilisateurController extends FOSRestController
       
     }
 
-//Données utilisateur en fontion de l'id
-   /**
-   * @Rest\Get("/user/{login}")
-   * 
-   */
+//Fontion pour récupérer utilisateur en fonction du login
+/**
+ * @Rest\Get("/user/{login}")
+ * 
+ */
     public function getUserData($login) : Response{
         $userRepository = $this->getDoctrine()->getRepository(Utilisateur::class);
         $user           = $userRepository->findBy(['login'=>$login]);
@@ -68,7 +69,7 @@ class UtilisateurController extends FOSRestController
         }
     }
 
-//function to generate a password
+//Fonction pour générer les mots de passe
     public function generatePassword($length):string{
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@';
         $charactersLength = strlen($characters);
@@ -79,16 +80,17 @@ class UtilisateurController extends FOSRestController
         return $password;
     }
 
-//function to generate login
+//Function pour générer les logins
     public function generateLogin(string $userName):string{
         $generatedLogin = $userName.$this->generatePassword(3);
         return $generatedLogin;
     }
 
-    /**
-    * @Rest\Post("/createUser")
-    */
-    //Le compte de l'utilisateur est crée au moment de son enregistrement avec un solde nul
+//Fonction pour la création des comptes utilisateurs
+/**
+* @Rest\Post("/createUser")
+*
+*/
     public function createUser(Request $request) : Response{
         $em             = $this->getDoctrine()->getManager();
         $requestContent = $request->getContent();
@@ -115,15 +117,16 @@ class UtilisateurController extends FOSRestController
         }
     }
 
-    /**
-    * @Rest\Get("/updateUtilisateur/{login}")
-    * 
-    */
+//Fonction pour le mise à jour des données utilisateurs
+/**
+* @Rest\Get("/updateUtilisateur/{login}")
+* 
+*/
     public function updateUser($login) : Response{
-        
         return new JsonResponse('updated',200);
     }
-    //Supprimer un utilisateur methode à revoir
+
+//Fonction pour la suppression des données d'un utilisateur
     /**
     * @Rest\Get("/removeUtilisateur/{login}")
     * 

@@ -90,14 +90,7 @@ class Utilisateur
      * @ORM\Column(name="matricule", type="string", length=15, nullable=true)
      */
     private $matricule;
-
-    // public function __construct($id,$login,$password,$nom,$prenom,$adresse,$telephone,$pays,$profil,$photo,$matricule){
-    //     $this->id=$id; $this->login=$login; $this->password=$password; $this->nom=$nom; $this->prenom=$prenom; $this->adresse=$adresse; $this->telephone=$telephone; $this->pays=$pays; $this->profil=$profil; $this->photo=$photo; $this->matricule=$matricule;
-    // }
-    // public function __construct($id){
-    //     $this->id=$id;
-    // }
-
+    
     /**
      * Get the value of id
      *
