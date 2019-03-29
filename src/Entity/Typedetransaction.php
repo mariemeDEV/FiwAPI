@@ -29,38 +29,4 @@ class Typedetransaction
     private $libelleType;
 
 
-
-    /**
-     * Get the value of idType
-     *
-     * @return  int
-     */ 
-    public function getIdType()
-    {
-        return $this->idType;
-    }
-
-    /**
-     * Get the value of libelleType
-     *
-     * @return  string
-     */ 
-    public function getLibelleType()
-    {
-        return $this->libelleType;
-    }
-
-    /**
-     * Set the value of libelleType
-     *
-     * @param  string  $libelleType
-     *
-     * @return  self
-     */ 
-    public function setLibelleType(string $libelleType)
-    {
-        $this->libelleType = $libelleType;
-
-        return $this;
-    }
 }

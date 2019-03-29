@@ -7,18 +7,33 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Utilisateur
  *
- * @ORM\Table(name="utilisateur", uniqueConstraints={@ORM\UniqueConstraint(name="motDePasse", columns={"motDePasse"})})
+ * @ORM\Table(name="utilisateur", uniqueConstraints={@ORM\UniqueConstraint(name="login", columns={"login"}), @ORM\UniqueConstraint(name="password", columns={"password"})})
  * @ORM\Entity
  */
 class Utilisateur
 {
     /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="login", type="string", length=20, nullable=false)
-     * @ORM\Id
      */
     private $login;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="password", type="string", length=20, nullable=false)
+     */
+    private $password;
 
     /**
      * @var string
@@ -56,32 +71,54 @@ class Utilisateur
     private $pays;
 
     /**
-     * @var string
+     * @var string|null
      *
-     * @ORM\Column(name="photo", type="blob", length=65535, nullable=false)
+     * @ORM\Column(name="photo", type="blob", length=65535, nullable=true)
      */
     private $photo;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="motDePasse", type="string", length=30, nullable=false)
-     */
-    private $motdepasse;
-
-     /**
-     * @var string
-     *
      * @ORM\Column(name="profil", type="string", length=15, nullable=false)
      */
     private $profil;
 
-    
-    // public function __construct($login){
-    //     $this->login=$login;
+      /**
+     * @var string
+     *
+     * @ORM\Column(name="matricule", type="string", length=15, nullable=true)
+     */
+    private $matricule;
+
+    // public function __construct($id,$login,$password,$nom,$prenom,$adresse,$telephone,$pays,$profil,$photo,$matricule){
+    //     $this->id=$id; $this->login=$login; $this->password=$password; $this->nom=$nom; $this->prenom=$prenom; $this->adresse=$adresse; $this->telephone=$telephone; $this->pays=$pays; $this->profil=$profil; $this->photo=$photo; $this->matricule=$matricule;
+    // }
+    // public function __construct($id){
+    //     $this->id=$id;
     // }
 
-     /**
+    /**
+     * Get the value of id
+     *
+     * @return  int
+     */ 
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Get the value of login
+     *
+     * @return  string
+     */ 
+    public function getLogin()
+    {
+        return $this->login;
+    }
+
+    /**
      * Set the value of login
      *
      * @param  string  $login
@@ -91,6 +128,30 @@ class Utilisateur
     public function setLogin(string $login)
     {
         $this->login = $login;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of password
+     *
+     * @return  string
+     */ 
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * Set the value of password
+     *
+     * @param  string  $password
+     *
+     * @return  self
+     */ 
+    public function setPassword(string $password)
+    {
+        $this->password = $password;
 
         return $this;
     }
@@ -218,7 +279,7 @@ class Utilisateur
     /**
      * Get the value of photo
      *
-     * @return  string
+     * @return  string|null
      */ 
     public function getPhoto()
     {
@@ -228,37 +289,14 @@ class Utilisateur
     /**
      * Set the value of photo
      *
-     * @param  string  $photo
+     * @param  string|null  $photo
      *
      * @return  self
      */ 
-    public function setPhoto(string $photo)
+    public function setPhoto($photo)
     {
         $this->photo = $photo;
 
-        return $this;
-    }
-
-    /**
-     * Get the value of motdepasse
-     *
-     * @return  string
-     */ 
-    public function getMotdepasse()
-    {
-        return $this->motdepasse;
-    }
-
-    /**
-     * Set the value of motdepasse
-     *
-     * @param  string  $motdepasse
-     *
-     * @return  self
-     */ 
-    public function setMotdepasse(string $motdepasse)
-    {
-        $this->motdepasse = $motdepasse;
         return $this;
     }
 
@@ -285,14 +323,28 @@ class Utilisateur
 
         return $this;
     }
-
+   
     /**
-     * Get the value of login
+     * Get the value of matricule
      *
      * @return  string
      */ 
-    public function getLogin()
+    public function getMatricule()
     {
-        return $this->login;
+        return $this->matricule;
+    }
+
+    /**
+     * Set the value of matricule
+     *
+     * @param  string  $matricule
+     *
+     * @return  self
+     */ 
+    public function setMatricule(string $matricule)
+    {
+        $this->matricule = $matricule;
+
+        return $this;
     }
 }

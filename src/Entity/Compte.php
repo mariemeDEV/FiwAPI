@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Compte
  *
- * @ORM\Table(name="compte", uniqueConstraints={@ORM\UniqueConstraint(name="login_user", columns={"login_user"})})
+ * @ORM\Table(name="compte", indexes={@ORM\Index(name="id_utilisateur", columns={"id_utilisateur"})})
  * @ORM\Entity
  */
 class Compte
@@ -40,28 +40,12 @@ class Compte
      *
      * @ORM\ManyToOne(targetEntity="Utilisateur")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="login_user", referencedColumnName="login")
+     *   @ORM\JoinColumn(name="id_utilisateur", referencedColumnName="id")
      * })
      */
-    private $loginUser;
+    private $idUtilisateur;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Transaction", mappedBy="compte")
-     */
-    private $transactions;
 
-    public function __construct()
-    {
-        $this->transactions = array();
-    }
-
-    /**
-     * @return transactions[]
-     */
-    public function getTransactions()
-    {
-        return $this->transactions;
-    }
 
     /**
      * Get the value of idCompte
@@ -118,6 +102,26 @@ class Compte
     {
         $this->points = $points;
 
+        return $this;
+    }
+
+    /**
+     * Get the value of idUtilisateur
+     *
+     * @return  \Utilisateur
+     */ 
+    public function getIdUtilisateur()
+    {
+        return $this->idUtilisateur;
+    }
+
+    /**
+     * Set the value of idUtilisateur
+     * @return  self
+     */ 
+    public function setIdUtilisateur($idUtilisateur)
+    {
+        $this->idUtilisateur = $idUtilisateur;
         return $this;
     }
 }
