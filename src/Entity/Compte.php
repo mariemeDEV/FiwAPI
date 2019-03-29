@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use App\Entity\Transaction;
+
 /**
  * Compte
  *
@@ -46,6 +48,34 @@ class Compte
     private $idUtilisateur;
 
 
+    //   /****
+    //  * @ORM\ManyToMany(targetEntity="EntityB", mappedBy="as")
+    //  */
+    // protected $bs;
+
+    //         /****
+    //  * @ORM\ManyToMany(targetEntity="EntityA", inversedBy="bs")
+    //  */
+    // protected $as;
+
+
+     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Transaction", mappedBy="compte")
+     */
+    private $transactions;
+
+    public function __construct()
+    {
+        $this->transactions = new ArrayCollection();
+    }
+
+    /**
+     * @return Collection|Transaction[]
+     */
+    public function getTransactions(): Collection
+    {
+        return $this->transactions;
+    }
 
     /**
      * Get the value of idCompte

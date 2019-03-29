@@ -14,6 +14,10 @@ use App\Entity\Compte;
 
 class UtilisateurController extends FOSRestController{
 
+    public function test(){
+        return "ok";
+    }
+
 //Fonction pour récuprer les données de tous les utilisateurs.
 /**
 * @Rest\Get("/users")
@@ -47,8 +51,7 @@ class UtilisateurController extends FOSRestController{
             $data     = $this->get('jms_serializer')->serialize($usersWithProfil,'json');
             $response = array('message'=>'Données des '.$profil.'s'.' recupérées avec succés','data'=>json_decode($data));
             return new JsonResponse($response, 200);
-        }
-      
+        } 
     }
 
 //Fontion pour récupérer utilisateur en fonction du login

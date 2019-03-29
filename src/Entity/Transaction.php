@@ -37,13 +37,11 @@ class Transaction
 
     /**
      * @var \Compte
-     *
-     * @ORM\ManyToOne(targetEntity="Compte")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_compte", referencedColumnName="id_compte")
-     * })
+     * @ORM\ManyToOne(targetEntity="App\Entity\Compte", cascade={"persist"}, inversedBy="transactions")
+     * @ORM\JoinColumn(name="id_compte", referencedColumnName="id_compte")
+
      */
-    private $idCompte;
+    private $compte;
 
     /**
      * @var \Typedetransaction
@@ -55,5 +53,99 @@ class Transaction
      */
     private $idType;
 
+    /**
+     * Get the value of idTransaction
+     *
+     * @return  int
+     */ 
+    public function getIdTransaction()
+    {
+        return $this->idTransaction;
+    }
 
+    /**
+     * Get the value of montantTransaction
+     *
+     * @return  float
+     */ 
+    public function getMontantTransaction()
+    {
+        return $this->montantTransaction;
+    }
+
+    /**
+     * Set the value of montantTransaction
+     *
+     * @param  float  $montantTransaction
+     *
+     * @return  self
+     */ 
+    public function setMontantTransaction(float $montantTransaction)
+    {
+        $this->montantTransaction = $montantTransaction;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of dateTransaction
+     *
+     * @return  \DateTime
+     */ 
+    public function getDateTransaction()
+    {
+        return $this->dateTransaction;
+    }
+
+    /**
+     * Set the value of dateTransaction
+     *
+     * @param  \DateTime  $dateTransaction
+     *
+     * @return  self
+     */ 
+    public function setDateTransaction(\DateTime $dateTransaction)
+    {
+        $this->dateTransaction = $dateTransaction;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of idType
+     *
+     * @return  \Typedetransaction
+     */ 
+    public function getIdType()
+    {
+        return $this->idType;
+    }
+
+    /**
+     * Set the value of idType
+     *
+     * @param  \Typedetransaction  $idType
+     *
+     * @return  self
+     */ 
+    public function setIdType(\Typedetransaction $idType)
+    {
+        $this->idType = $idType;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of compte
+     *
+     * @param  \Compte  $compte
+     *
+     * @return  self
+     */ 
+    public function setCompte(\Compte $compte)
+    {
+        $this->compte = $compte;
+
+        return $this;
+    }
 }
