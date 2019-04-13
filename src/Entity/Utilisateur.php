@@ -67,7 +67,7 @@ class Utilisateur
      * @var string
      *
      * @ORM\Column(name="pays", type="string", length=20, nullable=false)
-     */
+     */                 
     private $pays;
 
     /**
@@ -313,7 +313,6 @@ class Utilisateur
     public function setProfil(string $profil)
     {
         $this->profil = $profil;
-
         return $this;
     }
    

@@ -23,7 +23,7 @@ class UtilisateurController extends FOSRestController{
 * @Rest\Get("/users")
 * 
 */
-    public function listUsers() : Response{ 
+    public function listUsers() : Response { 
         $usersRepository = $this->getDoctrine()->getRepository(Utilisateur::class);
         $utilisateurs    = $usersRepository->findAll();
         if(empty($utilisateurs)){
